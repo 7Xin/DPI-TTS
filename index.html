@@ -17,13 +17,8 @@
     <section>
         <h2>Abstract</h2>
         <p>
-            Nowadays, speech diffusion models are developing rapidly. In addition to the commonly used U-net, DiT models based on transformers have also emerged.
-            However, current DiT speech models treat Mel spectrograms as general images, overlooking the acoustic properties of speech in both the time and frequency domains.
-            Therefore, we propose DPI-TTS: Directional Patch Interaction for Fast-Converging and Style Temporal Modeling in Text-to-Speech. 
-            DPI-TTS improves training speed by associating each patch of the Mel spectrogram with its surrounding components rather than the entire Mel spectrogram.
-            Additionally, DPI-TTS infers high frequencies from low frequencies and each frame from the previous one, according to acoustic properties. 
-            This approach improves the temporal consistency of speech and results in a slight enhancement in naturalness compared to the baseline.
-            Finally, DPI-TTS improves the stability of style representation in the rapid speech modeling process through style-temporal modeling. Experimental results show that the style similarity of our method is close to the baseline.
+            Speech diffusion models have seen rapid advancements in recent years. While the widely-used U-net architecture remains prominent, transformer-based models, such as DiT (Diffusion Transformer), have also garnered significant attention. However, existing DiT-based speech models often treat Mel spectrograms merely as generic images, thereby overlooking the specific acoustic properties inherent to speech. 
+To address these limitations, we propose a novel method called DPI-TTS, which leverages a direct patch interaction approach based on DiT. This method is designed to train quickly without sacrificing accuracy. Notably, the low-to-high frequency, frame-by-frame progressive inference approach employed by DPI-TTS aligns more closely with acoustic properties, thus enhancing the naturalness of the synthesized speech. Additionally, we introduce a fine-grained style temporal modeling method, which further improves the speaker style similarity of DPI-TTS. Experimental results demonstrate that our method not only accelerates training speed but also outperforms baselines.
         </p>
         <p>
         Our code is available <a href="https://github.com/7Xin/DPI-TTS">here</a>.
