@@ -9,6 +9,8 @@
 	<img src="./image/overview.png" alt="DPI-TTS" width="70%" height="70%"/>
 </p>
 
+##TODO
+Our code will be released soon.
 <!-- ## Shortcuts
 
 You can find codes, a demo site, and paper links below.
