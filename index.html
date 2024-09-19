@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPI-TTS: Directional Patch Interaction for Fast-Converging and Style Temporal Modeling in Text-to-Speech</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>DPI-TTS: Directional Patch Interaction for Fast-Converging and Style Temporal Modeling in Text-to-Speech</h1>
+        <p>Xin Qi, Ruibo Fu, Zhengqi Wen, Tao Wang, Chunyu Qiang, Jianhua Tao, Chengxing Li, Yi Lu, Shuchen Shi, Zhiyong Wang,
+             Xiaopeng Wang, Yuankun Xie, Yukun Liu, Xuefei Liu, Guanjun Li</p>
+    </header>
+
+    <section>
+        <h2>Abstract</h2>
+        <p>
+            Speech diffusion models have seen rapid advancements in recent years. While the widely-used U-net architecture remains prominent, transformer-based models, such as DiT (Diffusion Transformer), have also garnered significant attention. However, existing DiT-based speech models often treat Mel spectrograms merely as generic images, thereby overlooking the specific acoustic properties inherent to speech. 
+To address these limitations, we propose a novel method called DPI-TTS, which leverages a direct patch interaction approach based on DiT. This method is designed to train quickly without sacrificing accuracy. Notably, the low-to-high frequency, frame-by-frame progressive inference approach employed by DPI-TTS aligns more closely with acoustic properties, thus enhancing the naturalness of the synthesized speech. Additionally, we introduce a fine-grained style temporal modeling method, which further improves the speaker style similarity of DPI-TTS. Experimental results demonstrate that our method not only accelerates training speed but also outperforms baselines.
+        </p>
+        <p>
+        Our code is available <a href="https://github.com/7Xin/DPI-TTS">here</a>.
+        </p>
+    </section>
+
+    <section>
+        <h2>DPI-TTS Framework</h2>
+        <img src="overview.png" alt="The overall framework of RIO." style="width:300%; max-width:1000px; display:block; margin:auto;">
+    </section>
+
+    <section>
+        <h2>DPI-TTS results on LJSpeech dataset</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sample</th>
+                    <th>Speech</th>
+                    <th>Text</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Repeat this block for each comparison -->
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <audio controls>
+                            <source src="0_lj.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>                    
+                    <td>Mrs. De Mohrenschildt thought that Oswald,</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <audio controls>
+                            <source src="3_lj.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>The prisoner had nothing to deal with but wooden panels, and by dint of cutting and chopping he got both the lower panels out.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="11_lj.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Examination of the cartridge cases found on the sixth floor of the Depository Building</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>
+                        <audio controls>
+                            <source src="12_lj.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>testified that the information available to the Federal Government about Oswald before the assassination would, if known to PRS,</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>
+                        <audio controls>
+                            <source src="13_lj.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>It is an easy document to understand when you remember that it was called into being</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>
+                        <audio controls>
+                            <source src="14_lj.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>And in many directions, the intervention of that organized control which we call government</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>
+                        <audio controls>
+                            <source src="29_lj.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>Calcraft served the city of London till eighteen seventy-four, when he was pensioned at the rate of twenty-five shillings per week.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>
+                        <audio controls>
+                            <source src="30_lj.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>we will not allow ourselves to run around in new circles of futile discussion and debate, always postponing the day of decision.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>
+                        <audio controls>
+                            <source src="31_lj.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>   
+                    <td>There has never been much science in the system of carrying out the extreme penalty in this country; the "finisher of the law"</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                
+                    <td>
+                        <audio controls>
+                            <source src="32_lj.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>he had his pockets filled with bread and cheese, and it was generally supposed that he had come a long distance to see the fatal show.</td>
+                </tr>
+                <!-- Add more rows as needed -->
+
+                <tr>
+                    
+                </tr>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>DPI-TTS results on VCTK dataset</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sample</th>
+                    <th>Speech</th>
+                    <th>Text</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Repeat this block for each comparison -->
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <audio controls>
+                            <source src="1_vctk_56.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>                    
+                    <td>it has the potential to be another north sea.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>
+                        <audio controls>
+                            <source src="3_vctk_17.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>while they went on holiday, we got the contract.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>
+                        <audio controls>
+                            <source src="30_vctk_46.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>it is a tough game but we have a chance.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>
+                        <audio controls>
+                            <source src="38_vctk_67.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>i learned a lot from her.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>
+                        <audio controls>
+                            <source src="78_vctk_87.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>people tended to stay there for some time.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>
+                        <audio controls>
+                            <source src="79_vctk_41.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>she is currently the permanent secretary at the department of transport.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>
+                        <audio controls>
+                            <source src="85_vctk_68.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>he will never walk the streets again.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>
+                        <audio controls>
+                            <source src="92_vctk_66.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>so, where do we go from here?</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>
+                        <audio controls>
+                            <source src="98_vctk_19.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>   
+                    <td>it is great to have this beautiful new site in wonderful countryside.</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                
+                    <td>
+                        <audio controls>
+                            <source src="99_vctk_96.wav" type="audio/wav">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                    <td>one policeman was killed.</td>
+                </tr>
+                <!-- Add more rows as needed -->
+
+                <tr>
+                </tr>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    
+</body>
+</html>
+
